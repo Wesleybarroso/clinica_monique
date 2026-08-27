@@ -21,3 +21,9 @@
 - [x] Recriar o logo Monique Cascapera em alta qualidade mantendo o monograma dourado e o círculo branco.
 - [x] Substituir o logo comprimido no cabeçalho, rodapé e favicon.
 - [x] Validar nitidez do novo logo em desktop e mobile.
+- [x] Confirmar o endereço oficial a partir do link do Google Maps.
+- [x] Adicionar mapa visual do Google Maps ao rodapé.
+- [x] Adicionar botões Como chegar e Abrir no Uber com destino da clínica.
+- [x] Validar os links e a responsividade da seção de localização.
+- [x] Implementar o mapa oficial do Google Maps via Static Maps no backend, sem usar screenshot recortado.
+- [x] Revalidar a seção de localização oficial em desktop e mobile.

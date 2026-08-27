@@ -5,6 +5,7 @@ import { ArrowUpRight, Check, Clock3, Facebook, Instagram, Linkedin, Menu, MapPi
 import { toast } from "sonner";
 import { AIChatBox } from "@/components/AIChatBox";
 import { trpc } from "@/lib/trpc";
+import { clinicAddress, clinicCoordinates, clinicMapLink, directionsLink, uberLink } from "@/lib/location";
 
 const heroImage = "/manus-storage/AHRPTWnU3u5EoX5o0bG1VWGwz0WLAucR1EKgwdle0FKS9Q0TRG2U52VQvVi8RIw09y_2i5gD9w6ZIy1nzM8uHSaUae5bdMidjro8W8Oyt_8-rZyZN8yQUDqdIgsPkVXJfv2b0U6EBUKZw1440-h1440-k-no_17f77245.jpg";
 const detailImage = "/manus-storage/AHRPTWlTFlEJIJMmfhM5ynbU0e2itdAFOw1_ItuSDCsZjkPWlHHX6mIOdvNEh1IXrrbpTghEPf8xuqtDeb4H24BKURGKw1DZZBPk9NVaI4cmbGsuEAKzP4uxcZb-WbhJsjxTlUf68KYT0Qw2048-h2048-k-no_c0fe82a7.png";
@@ -116,6 +117,7 @@ export default function Home() {
   const [submitted, setSubmitted] = useState(false);
   const { scrollYProgress } = useScroll();
   const reduceMotion = useReducedMotion();
+  const { data: mapData, isError: mapError } = trpc.maps.staticMap.useQuery(undefined, { staleTime: 15 * 60 * 1000, retry: 1 });
   const heroX = useTransform(scrollYProgress, [0, 0.5], [0, reduceMotion ? 0 : -110]);
   const heroY = useTransform(scrollYProgress, [0, 0.45], [0, reduceMotion ? 0 : 70]);
   const sideX = useTransform(scrollYProgress, [0, 0.7], [0, reduceMotion ? 0 : -42]);
@@ -215,7 +217,25 @@ export default function Home() {
       </main>
 
       <ChatWidget />
-      <footer className="site-footer"><div className="container footer-inner"><AppMark /><p>Odontologia humanizada,<br />precisa e próxima.</p><div className="footer-social"><span>Siga a clínica</span><div><a href="https://www.instagram.com/dramoniquecascapera" target="_blank" rel="noreferrer" aria-label="Instagram da Dra. Monique Cascapera"><Instagram size={17} /></a><a href="https://www.facebook.com/dramoniquecascapera" target="_blank" rel="noreferrer" aria-label="Facebook da Dra. Monique Cascapera"><Facebook size={17} /></a><a href="https://www.linkedin.com/in/dramoniquecascapera" target="_blank" rel="noreferrer" aria-label="LinkedIn da Dra. Monique Cascapera"><Linkedin size={17} /></a></div></div><div className="footer-meta"><span>© 2026 Dra. Monique Cascapera</span><a href="#top">Voltar ao topo ↑</a></div></div></footer>
+      <footer className="site-footer">
+        <div className="container footer-location">
+          <div className="footer-location-copy">
+            <p className="eyebrow eyebrow--light"><span /> Onde estamos</p>
+            <h2>Seu cuidado,<br /><em>mais perto.</em></h2>
+            <p className="footer-address"><MapPin size={18} /> <span>{clinicAddress}</span></p>
+            <p className="footer-location-note">Atendimento no Tatuapé, em Vila Gomes Cardim. Abra a rota pelo Google Maps ou peça um Uber direto para o endereço da clínica.</p>
+            <div className="location-actions">
+              <a className="button button--light" href={directionsLink} target="_blank" rel="noreferrer"><MapPin size={17} /> Como chegar <ArrowUpRight size={17} /></a>
+              <a className="button button--uber" href={uberLink} target="_blank" rel="noreferrer"><span className="uber-mark">U</span> Abrir no Uber <ArrowUpRight size={17} /></a>
+            </div>
+            <a className="location-text-link" href={clinicMapLink} target="_blank" rel="noreferrer">Ver local completo no Google Maps <ArrowUpRight size={15} /></a>
+          </div>
+          <div className="footer-map-wrap">
+            {mapData?.dataUrl ? <img className="footer-map" src={mapData.dataUrl} alt="Mapa oficial do Google Maps mostrando a localização da clínica Monique Cascapera no Tatuapé" /> : <div className="footer-map-placeholder"><MapPin size={22} /><strong>{mapError ? "Abra a localização no Google Maps" : "Carregando o mapa da clínica"}</strong><span>{clinicAddress}</span><a href={clinicMapLink} target="_blank" rel="noreferrer">Ver no Google Maps <ArrowUpRight size={15} /></a></div>}
+            <div className="map-label"><MapPin size={15} /> Dra. Monique Cascapera <span>Tatuapé · SP</span></div>
+          </div>
+        </div>
+        <div className="container footer-inner"><AppMark /><p>Odontologia humanizada,<br />precisa e próxima.</p><div className="footer-social"><span>Siga a clínica</span><div><a href="https://www.instagram.com/dramoniquecascapera" target="_blank" rel="noreferrer" aria-label="Instagram da Dra. Monique Cascapera"><Instagram size={17} /></a><a href="https://www.facebook.com/dramoniquecascapera" target="_blank" rel="noreferrer" aria-label="Facebook da Dra. Monique Cascapera"><Facebook size={17} /></a><a href="https://www.linkedin.com/in/dramoniquecascapera" target="_blank" rel="noreferrer" aria-label="LinkedIn da Dra. Monique Cascapera"><Linkedin size={17} /></a></div></div><div className="footer-meta"><span>© 2026 Dra. Monique Cascapera</span><a href="#top">Voltar ao topo ↑</a></div></div></footer>
     </div>
   );
 }
