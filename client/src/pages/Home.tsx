@@ -1,7 +1,7 @@
 /* Coastal Precision: composição editorial assimétrica, camadas de profundidade e movimento sereno. */
 import { useEffect, useState } from "react";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
-import { ArrowUpRight, Check, Clock3, Facebook, Instagram, Linkedin, Menu, MapPin, MessageCircle, Phone, Sparkles, X } from "lucide-react";
+import { ArrowDownRight, ArrowUpRight, Check, Clock3, Facebook, Instagram, Linkedin, Menu, MapPin, MessageCircle, Phone, Sparkles, X } from "lucide-react";
 import { toast } from "sonner";
 import { AIChatBox } from "@/components/AIChatBox";
 import { trpc } from "@/lib/trpc";
@@ -167,7 +167,7 @@ export default function Home() {
               <p className="hero-lede">Odontologia humanizada e estética do sorriso no Tatuapé, com tecnologia, escuta atenta e escolhas que respeitam a sua individualidade.</p>
               <div className="hero-actions">
                 <a className="button button--primary" href="#contato">Encontrar meu horário <ArrowUpRight size={18} /></a>
-                <a className="text-link" href="#experiencia">Conhecer a clínica <span>↘</span></a>
+                <a className="text-link" href="#experiencia">Conhecer a clínica <ArrowDownRight size={15} aria-hidden="true" /></a>
               </div>
               <div className="hero-proof"><div className="proof-line" /><span>CRO-SP 96616<br />Tatuapé · São Paulo</span></div>
             </Reveal>
@@ -184,7 +184,7 @@ export default function Home() {
           <Reveal className="section-kicker"><span>01</span><span className="kicker-rule" /><span>A clínica</span></Reveal>
           <div className="intro-grid">
             <Reveal className="intro-title"><h2>Um cuidado que<br /><em>começa antes</em><br />do consultório.</h2></Reveal>
-            <Reveal delay={0.1} className="intro-body"><p>Na Horizonte, o tratamento é uma conversa contínua. A gente entende sua rotina, explica cada escolha e constrói um plano que faça sentido para a sua vida.</p><a className="text-link" href="#experiencia">Nossa maneira de cuidar <span>↘</span></a></Reveal>
+            <Reveal delay={0.1} className="intro-body"><p>Na Horizonte, o tratamento é uma conversa contínua. A gente entende sua rotina, explica cada escolha e constrói um plano que faça sentido para a sua vida.</p><a className="text-link" href="#experiencia">Nossa maneira de cuidar <ArrowDownRight size={15} aria-hidden="true" /></a></Reveal>
           </div>
           <motion.div className="side-label" style={{ x: sideX }}>HORIZONTE / CUIDADO CONTEMPORÂNEO</motion.div>
         </section>
@@ -201,7 +201,7 @@ export default function Home() {
         </section>
 
         <section id="experiencia" className="experience-section container section-pad">
-          <Reveal className="experience-image"><img src={detailImage} alt="Instrumentos odontológicos organizados com precisão" /><div className="image-caption">Detalhes que fazem diferença <span>↗</span></div></Reveal>
+          <Reveal className="experience-image"><img src={detailImage} alt="Instrumentos odontológicos organizados com precisão" /><div className="image-caption">Detalhes que fazem diferença <ArrowUpRight size={15} aria-hidden="true" /></div></Reveal>
           <Reveal delay={0.12} className="experience-copy"><p className="eyebrow"><span /> A experiência Horizonte</p><h2>Você não precisa<br />ter pressa para<br /><em>se sentir bem.</em></h2><p>Da primeira mensagem ao retorno para casa, cada ponto de contato foi desenhado para ser simples, acolhedor e transparente.</p><div className="experience-stats"><div><strong>12</strong><span>anos de<br />experiência</span></div><div><strong>1:1</strong><span>plano feito<br />para você</span></div></div></Reveal>
         </section>
 
@@ -211,13 +211,13 @@ export default function Home() {
         </section>
 
         <section className="gallery-section section-pad" aria-labelledby="gallery-title">
-          <div className="container"><Reveal className="gallery-heading"><div><p className="eyebrow"><span /> Registros da clínica</p><h2 id="gallery-title">Cuidado que<br /><em>se reconhece.</em></h2></div><p>Uma seleção de imagens fornecidas pela clínica para mostrar pessoas, detalhes e momentos que fazem parte do atendimento.</p></Reveal><div className="gallery-grid">{galleryImages.map((image, index) => <Reveal key={image.src} delay={index * 0.08} className={`gallery-card gallery-card--${index + 1}`}><img src={image.src} alt={image.alt} /><span>{image.label} <b>↗</b></span></Reveal>)}</div></div>
+          <div className="container"><Reveal className="gallery-heading"><div><p className="eyebrow"><span /> Registros da clínica</p><h2 id="gallery-title">Cuidado que<br /><em>se reconhece.</em></h2></div><p>Uma seleção de imagens fornecidas pela clínica para mostrar pessoas, detalhes e momentos que fazem parte do atendimento.</p></Reveal><div className="gallery-grid">{galleryImages.map((image, index) => <Reveal key={image.src} delay={index * 0.08} className={`gallery-card gallery-card--${index + 1}`}><img src={image.src} alt={image.alt} /><span>{image.label} <ArrowUpRight className="gallery-arrow" size={17} aria-hidden="true" /></span></Reveal>)}</div></div>
         </section>
 
         <section id="contato" className="contact-section section-pad">
           <div className="container contact-grid">
             <Reveal className="contact-copy"><p className="eyebrow"><span /> Vamos conversar</p><h2>Conte o que<br /><em>você precisa.</em></h2><p>A gente cuida do próximo passo com calma. Preencha o formulário e nossa equipe entra em contato para encontrar um horário possível para você.</p><div className="contact-details"><a href="tel:+551130000000"><Phone size={17} /> (11) 99999-9999</a><span><Clock3 size={17} /> Seg–Sex, 8h–18h</span><span><MapPin size={17} /> Tatuapé / Vila Gomes Cardim, São Paulo</span></div></Reveal>
-            <Reveal delay={0.12} className="contact-card"><div className="card-topline"><span>Primeiro contato</span><span>01 / 02</span></div>{submitted ? <div className="success-state"><div className="success-icon"><Check /></div><h3>Mensagem recebida.</h3><p>Em breve, nossa equipe vai falar com você para continuar a conversa.</p><button className="text-link" onClick={() => setSubmitted(false)}>Enviar outra mensagem <span>↘</span></button></div> : <form onSubmit={handleSubmit}><label>Seu nome<input required name="name" placeholder="Como podemos chamar você?" /></label><label>Seu melhor contato<input required name="contact" placeholder="E-mail ou telefone" /></label><label>Como podemos ajudar? <textarea required name="message" placeholder="Conte um pouco sobre o que você procura..." rows={3} /></label><button className="button button--primary button--wide" type="submit">Enviar mensagem <ArrowUpRight size={18} /></button><small>Seus dados são usados apenas para este contato.</small></form>}</Reveal>
+            <Reveal delay={0.12} className="contact-card"><div className="card-topline"><span>Primeiro contato</span><span>01 / 02</span></div>{submitted ? <div className="success-state"><div className="success-icon"><Check /></div><h3>Mensagem recebida.</h3><p>Em breve, nossa equipe vai falar com você para continuar a conversa.</p><button className="text-link" onClick={() => setSubmitted(false)}>Enviar outra mensagem <ArrowDownRight size={15} aria-hidden="true" /></button></div> : <form onSubmit={handleSubmit}><label>Seu nome<input required name="name" placeholder="Como podemos chamar você?" /></label><label>Seu melhor contato<input required name="contact" placeholder="E-mail ou telefone" /></label><label>Como podemos ajudar? <textarea required name="message" placeholder="Conte um pouco sobre o que você procura..." rows={3} /></label><button className="button button--primary button--wide" type="submit">Enviar mensagem <ArrowUpRight size={18} /></button><small>Seus dados são usados apenas para este contato.</small></form>}</Reveal>
           </div>
         </section>
       </main>
@@ -241,7 +241,7 @@ export default function Home() {
             <div className="map-label"><MapPin size={15} /> Dra. Monique Cascapera <span>Tatuapé · SP</span></div>
           </div>
         </div>
-        <div className="container footer-inner"><AppMark /><p>Odontologia humanizada,<br />precisa e próxima.</p><div className="footer-social"><span>Siga a clínica</span><div><a href="https://www.instagram.com/dramoniquecascapera" target="_blank" rel="noreferrer" aria-label="Instagram da Dra. Monique Cascapera"><Instagram size={17} /></a><a href="https://www.facebook.com/dramoniquecascapera" target="_blank" rel="noreferrer" aria-label="Facebook da Dra. Monique Cascapera"><Facebook size={17} /></a><a href="https://www.linkedin.com/in/dramoniquecascapera" target="_blank" rel="noreferrer" aria-label="LinkedIn da Dra. Monique Cascapera"><Linkedin size={17} /></a></div></div><div className="footer-meta"><span>© 2026 Dra. Monique Cascapera</span><a href="#top">Voltar ao topo ↑</a></div></div></footer>
+        <div className="container footer-inner"><AppMark /><p>Odontologia humanizada,<br />precisa e próxima.</p><div className="footer-social"><span>Siga a clínica</span><div><a href="https://www.instagram.com/dramoniquecascapera" target="_blank" rel="noreferrer" aria-label="Instagram da Dra. Monique Cascapera"><Instagram size={17} /></a><a href="https://www.facebook.com/dramoniquecascapera" target="_blank" rel="noreferrer" aria-label="Facebook da Dra. Monique Cascapera"><Facebook size={17} /></a><a href="https://www.linkedin.com/in/dramoniquecascapera" target="_blank" rel="noreferrer" aria-label="LinkedIn da Dra. Monique Cascapera"><Linkedin size={17} /></a></div></div><div className="footer-meta"><span>© 2026 Dra. Monique Cascapera</span><a href="#top">Voltar ao topo <ArrowUpRight size={14} aria-hidden="true" /></a></div></div></footer>
     </div>
   );
 }

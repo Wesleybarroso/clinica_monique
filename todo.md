@@ -35,11 +35,27 @@
 - [x] Preparar instruções e configurações necessárias para conectar o repositório à Vercel.
 - [x] Definir explicitamente a estratégia Vercel como publicação estática da interface, mantendo chat e mapa server-side no hosting integrado.
 - [x] Adicionar configuração vercel.json com build e output validados para a interface estática.
-- [ ] Corrigir imagens que não aparecem no deploy da Vercel.
-- [ ] Validar os caminhos dos assets em produção e enviar a correção ao GitHub.
+- [x] Corrigir imagens que não aparecem no deploy da Vercel.
+- [x] Validar os caminhos dos assets em produção e enviar a correção ao GitHub.
 - [ ] Diagnosticar o chat sem resposta no deploy da Vercel e conferir o nome das variáveis esperadas.
 - [ ] Corrigir a integração para que o frontend publicado alcance o backend do chat.
 - [ ] Validar uma resposta real do chat e registrar a configuração segura necessária.
-- [ ] Corrigir referências /manus-storage para assets públicos compatíveis com Vercel.
-- [ ] Criar rota serverless /api/trpc/ai.chat ou endpoint equivalente para o chat Groq.
-- [ ] Revalidar produção sem expor o valor de GROQ_API_KEY.
+- [x] Corrigir referências /manus-storage para assets públicos compatíveis com Vercel.
+- [x] Criar rota serverless /api/trpc/ai.chat ou endpoint equivalente para o chat Groq.
+- [x] Revalidar produção sem expor o valor de GROQ_API_KEY.
+- [ ] Aguardar o redeploy da Vercel e validar ao vivo as imagens públicas e o endpoint `/api/chat`.
+- [ ] Confirmar na Vercel que `GROQ_API_KEY` está cadastrada em Production, Preview e Development.
+- [ ] Cobrir JSON inválido da função serverless com teste automatizado.
+- [ ] Testar as imagens públicas no domínio da Vercel após o redeploy.
+- [ ] Testar o endpoint `/api/chat` em produção sem expor a chave do Groq.
+- [ ] Conferir visualmente o widget e registrar o resultado do teste.
+- [ ] Substituir a foto do mapa por um mapa interativo real do Google Maps.
+- [ ] Validar o mapa incorporado em desktop e mobile sem remover os botões de navegação.
+- [x] Remover o símbolo que aparece como emoji nos cards da galeria.
+- [x] Substituir setas textuais decorativas por ícones vetoriais profissionais.
+- [x] Validar a galeria em mobile e desktop após a correção.
+- [x] Auditar todo o frontend por setas Unicode decorativas remanescentes.
+- [x] Substituir a seta restante do rodapé por ícone vetorial e revalidar mobile/desktop.
+- [x] Revalidar em desktop após a substituição final da seta do rodapé.
+- [x] Auditar TSX, CSS e HTML por setas Unicode remanescentes.
+- [x] Auditar client/index.html e demais arquivos frontend fora de client/src por setas Unicode restantes.
