@@ -45,7 +45,7 @@
 - [x] Revalidar produção sem expor o valor de GROQ_API_KEY.
 - [ ] Aguardar o redeploy da Vercel e validar ao vivo as imagens públicas e o endpoint `/api/chat`.
 - [ ] Confirmar na Vercel que `GROQ_API_KEY` está cadastrada em Production, Preview e Development.
-- [ ] Cobrir JSON inválido da função serverless com teste automatizado.
+- [x] Cobrir JSON inválido da função serverless com teste automatizado.
 - [ ] Testar as imagens públicas no domínio da Vercel após o redeploy.
 - [ ] Testar o endpoint `/api/chat` em produção sem expor a chave do Groq.
 - [ ] Conferir visualmente o widget e registrar o resultado do teste.

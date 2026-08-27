@@ -4,7 +4,7 @@ import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion
 import { ArrowDownRight, ArrowUpRight, Check, Clock3, Facebook, Instagram, Linkedin, Menu, MapPin, MessageCircle, Phone, Sparkles, X } from "lucide-react";
 import { toast } from "sonner";
 import { AIChatBox } from "@/components/AIChatBox";
-import { trpc } from "@/lib/trpc";
+import { MapView } from "@/components/Map";
 import { clinicAddress, clinicCoordinates, clinicMapLink, directionsLink, uberLink } from "@/lib/location";
 
 const heroImage = "/images/hero-clinic.jpg";
@@ -123,7 +123,6 @@ export default function Home() {
   const [submitted, setSubmitted] = useState(false);
   const { scrollYProgress } = useScroll();
   const reduceMotion = useReducedMotion();
-  const { data: mapData } = trpc.maps.staticMap.useQuery(undefined, { staleTime: 15 * 60 * 1000, retry: 1 });
   const heroX = useTransform(scrollYProgress, [0, 0.5], [0, reduceMotion ? 0 : -110]);
   const heroY = useTransform(scrollYProgress, [0, 0.45], [0, reduceMotion ? 0 : 70]);
   const sideX = useTransform(scrollYProgress, [0, 0.7], [0, reduceMotion ? 0 : -42]);
@@ -237,7 +236,21 @@ export default function Home() {
             <a className="location-text-link" href={clinicMapLink} target="_blank" rel="noreferrer">Ver local completo no Google Maps <ArrowUpRight size={15} /></a>
           </div>
           <div className="footer-map-wrap">
-            <img className="footer-map" src={mapData?.dataUrl || mapImage} alt="Mapa do Google Maps mostrando a localização da clínica Monique Cascapera no Tatuapé" />
+            <div className="footer-map-fallback" style={{ backgroundImage: `url(${mapImage})` }} aria-hidden="true" />
+            <MapView
+              className="footer-map footer-map--interactive"
+              initialCenter={clinicCoordinates}
+              initialZoom={16}
+              onMapReady={(map) => {
+                if (window.google?.maps?.marker?.AdvancedMarkerElement) {
+                  new window.google.maps.marker.AdvancedMarkerElement({
+                    map,
+                    position: clinicCoordinates,
+                    title: "Dra. Monique Cascapera — Tatuapé",
+                  });
+                }
+              }}
+            />
             <div className="map-label"><MapPin size={15} /> Dra. Monique Cascapera <span>Tatuapé · SP</span></div>
           </div>
         </div>

@@ -17,7 +17,14 @@ export default async function handler(req: RequestLike, res: ResponseLike) {
     return;
   }
 
-  const body = typeof req.body === "string" ? JSON.parse(req.body) : req.body;
+  let body: unknown;
+  try {
+    body = typeof req.body === "string" ? JSON.parse(req.body) : req.body;
+  } catch {
+    res.status(400).json({ error: "Invalid JSON" });
+    return;
+  }
+
   const messages = (body as { messages?: unknown } | undefined)?.messages;
 
   if (!Array.isArray(messages) || messages.length < 1 || messages.length > 12) {
