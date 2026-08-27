@@ -7,3 +7,5 @@
 - [x] Refinar botões, navegação e formulário de contato.
 - [x] Validar a página em desktop e mobile.
 - [ ] Salvar checkpoint e entregar a nova versão.
+- [ ] Adicionar Facebook, Instagram e LinkedIn oficiais ao rodapé.
+- [ ] Remover a aba lateral indesejada e corrigir overflow horizontal.

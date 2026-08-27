@@ -1,7 +1,7 @@
 /* Coastal Precision: composição editorial assimétrica, camadas de profundidade e movimento sereno. */
 import { useEffect, useState } from "react";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
-import { ArrowUpRight, Check, Clock3, Menu, MapPin, Phone, Sparkles, X } from "lucide-react";
+import { ArrowUpRight, Check, Clock3, Facebook, Instagram, Linkedin, Menu, MapPin, Phone, Sparkles, X } from "lucide-react";
 import { toast } from "sonner";
 
 const heroImage = "/manus-storage/AHRPTWnU3u5EoX5o0bG1VWGwz0WLAucR1EKgwdle0FKS9Q0TRG2U52VQvVi8RIw09y_2i5gD9w6ZIy1nzM8uHSaUae5bdMidjro8W8Oyt_8-rZyZN8yQUDqdIgsPkVXJfv2b0U6EBUKZw1440-h1440-k-no_17f77245.jpg";
@@ -150,7 +150,7 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="site-footer"><div className="container footer-inner"><AppMark /><p>Odontologia humanizada,<br />precisa e próxima.</p><div className="footer-meta"><span>© 2026 Dra. Monique Cascapera</span><a href="#top">Voltar ao topo ↑</a></div></div></footer>
+      <footer className="site-footer"><div className="container footer-inner"><AppMark /><p>Odontologia humanizada,<br />precisa e próxima.</p><div className="footer-social"><span>Siga a clínica</span><div><a href="https://www.instagram.com/dramoniquecascapera" target="_blank" rel="noreferrer" aria-label="Instagram da Dra. Monique Cascapera"><Instagram size={17} /></a><a href="https://www.facebook.com/dramoniquecascapera" target="_blank" rel="noreferrer" aria-label="Facebook da Dra. Monique Cascapera"><Facebook size={17} /></a><a href="https://www.linkedin.com/in/dramoniquecascapera" target="_blank" rel="noreferrer" aria-label="LinkedIn da Dra. Monique Cascapera"><Linkedin size={17} /></a></div></div><div className="footer-meta"><span>© 2026 Dra. Monique Cascapera</span><a href="#top">Voltar ao topo ↑</a></div></div></footer>
     </div>
   );
 }
