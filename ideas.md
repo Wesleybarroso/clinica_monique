@@ -60,3 +60,10 @@ Marca gráfica baseada em um arco dental abstrato atravessado por uma linha de h
 
 ### Signature Brand Color
 Azul mineral `#164A59`, usado como assinatura proprietária em fundos, linhas e estados ativos.
+
+## Style Decisions
+
+- CTAs primários e pequenos pontos de energia usam coral suave `#D67C6A`; aqua/verde-água fica reservado para etiquetas, linhas e acentos de cuidado.
+- Fotos clínicas são apresentadas em molduras editoriais, com saturação reduzida, overlays e legendas neutras, sem prometer resultados ou usar depoimentos fabricados.
+- O símbolo de arco dental cruzado por horizonte aparece em badges, divisores, progresso lateral e máscaras das imagens para tornar a marca reconhecível em toda a página.
+- A linguagem verbal reforça a promessa específica de precisão com tempo, calma e horizonte, evitando frases genéricas de clínica premium.
