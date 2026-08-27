@@ -8,7 +8,7 @@ const heroImage = "/manus-storage/AHRPTWnU3u5EoX5o0bG1VWGwz0WLAucR1EKgwdle0FKS9Q
 const detailImage = "/manus-storage/AHRPTWlTFlEJIJMmfhM5ynbU0e2itdAFOw1_ItuSDCsZjkPWlHHX6mIOdvNEh1IXrrbpTghEPf8xuqtDeb4H24BKURGKw1DZZBPk9NVaI4cmbGsuEAKzP4uxcZb-WbhJsjxTlUf68KYT0Qw2048-h2048-k-no_c0fe82a7.png";
 const spaceImage = "/manus-storage/clinic-space_7a07c87e.jpg";
 const textureImage = "/manus-storage/clinic-texture_03c9bc52.png";
-const markImage = "/manus-storage/clinic-mark_9438e71f.png";
+const markImage = "/manus-storage/pasted_file_wT535y_image_50d1b896.png";
 const galleryImages = [
   { src: "/manus-storage/AHRPTWmBWuxJIydhLhJuxjlOjgXmWlReJTvUnwFSfn0gOngNZrPBH5MQ5lnpqdEI0JyJdUxV8QzAHPxhkLahV5bq6mvn_O1eY3Z2Czw9qgBZMcxVVM0o8nseyKHf0aeFqZoxtxIpUOCKw904-h904-k-no_1e4fd976.png", alt: "Registro clínico odontológico fornecido pela clínica", label: "Cuidado em detalhe" },
   { src: "/manus-storage/AHRPTWnO4e_tFqgzVxZICgH1t6-XI0EYFCa9KlpBvu_h45m4PDcW-g8frWXH-I8viYfscfDimEQJLJxAbG42ruiSvI06hZQOYxaQEETKEAT4HykXAnm6bf2ZO1P18EPcpXFSREU1Ultqw1818-h1818-k-no-Copia(2)_d8bd95e5.jpg", alt: "Sorriso registrado em acompanhamento odontológico", label: "Naturalidade" },
@@ -39,9 +39,8 @@ function Reveal({ children, delay = 0, className = "" }: { children: React.React
 
 function AppMark({ compact = false }: { compact?: boolean }) {
   return (
-    <a className={`brand ${compact ? "brand--compact" : ""}`} href="#top" aria-label="Dra. Monique Cascapera, início">
-      <img src={markImage} alt="" aria-hidden="true" />
-      <span><strong>dra. monique</strong><small>odontologia humanizada</small></span>
+    <a className={`brand ${compact ? "brand--compact" : ""}`} href="#top" aria-label="Monique Cascapera, início">
+      <img src={markImage} alt="Monique Cascapera — Odontologia Estética" />
     </a>
   );
 }

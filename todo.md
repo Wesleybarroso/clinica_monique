@@ -7,5 +7,6 @@
 - [x] Refinar botões, navegação e formulário de contato.
 - [x] Validar a página em desktop e mobile.
 - [ ] Salvar checkpoint e entregar a nova versão.
-- [ ] Adicionar Facebook, Instagram e LinkedIn oficiais ao rodapé.
-- [ ] Remover a aba lateral indesejada e corrigir overflow horizontal.
+- [x] Adicionar Facebook, Instagram e LinkedIn oficiais ao rodapé.
+- [x] Remover a aba lateral indesejada e corrigir overflow horizontal.
+- [x] Usar o logo oficial Monique Cascapera como identidade visual completa do site.
