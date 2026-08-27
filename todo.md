@@ -33,5 +33,5 @@
 - [x] Auditar o projeto para garantir que segredos não sejam versionados.
 - [x] Criar o repositório privado clinica_monique no GitHub e enviar o projeto.
 - [x] Preparar instruções e configurações necessárias para conectar o repositório à Vercel.
-- [ ] Definir explicitamente a estratégia Vercel como publicação estática da interface, mantendo chat e mapa server-side no hosting integrado.
-- [ ] Adicionar configuração vercel.json com build e output validados para a interface estática.
+- [x] Definir explicitamente a estratégia Vercel como publicação estática da interface, mantendo chat e mapa server-side no hosting integrado.
+- [x] Adicionar configuração vercel.json com build e output validados para a interface estática.
