@@ -7,16 +7,17 @@ import { AIChatBox } from "@/components/AIChatBox";
 import { trpc } from "@/lib/trpc";
 import { clinicAddress, clinicCoordinates, clinicMapLink, directionsLink, uberLink } from "@/lib/location";
 
-const heroImage = "/manus-storage/AHRPTWnU3u5EoX5o0bG1VWGwz0WLAucR1EKgwdle0FKS9Q0TRG2U52VQvVi8RIw09y_2i5gD9w6ZIy1nzM8uHSaUae5bdMidjro8W8Oyt_8-rZyZN8yQUDqdIgsPkVXJfv2b0U6EBUKZw1440-h1440-k-no_17f77245.jpg";
-const detailImage = "/manus-storage/AHRPTWlTFlEJIJMmfhM5ynbU0e2itdAFOw1_ItuSDCsZjkPWlHHX6mIOdvNEh1IXrrbpTghEPf8xuqtDeb4H24BKURGKw1DZZBPk9NVaI4cmbGsuEAKzP4uxcZb-WbhJsjxTlUf68KYT0Qw2048-h2048-k-no_c0fe82a7.png";
-const spaceImage = "/manus-storage/clinic-space_7a07c87e.jpg";
-const textureImage = "/manus-storage/clinic-texture_03c9bc52.png";
-const markImage = "/manus-storage/monique-cascapera-logo-hd_a904164d.png";
-const assistantAvatar = "/manus-storage/assistant-avatar_efc6cd96.png";
+const heroImage = "/images/hero-clinic.jpg";
+const detailImage = "/images/detail-clinic.png";
+const spaceImage = "/images/clinic-space.jpg";
+const textureImage = "/images/clinic-texture.png";
+const markImage = "/images/monique-logo-hd.png";
+const assistantAvatar = "/images/assistant-avatar.png";
+const mapImage = "/images/clinic-map-static.jpg";
 const galleryImages = [
-  { src: "/manus-storage/AHRPTWmBWuxJIydhLhJuxjlOjgXmWlReJTvUnwFSfn0gOngNZrPBH5MQ5lnpqdEI0JyJdUxV8QzAHPxhkLahV5bq6mvn_O1eY3Z2Czw9qgBZMcxVVM0o8nseyKHf0aeFqZoxtxIpUOCKw904-h904-k-no_1e4fd976.png", alt: "Registro clínico odontológico fornecido pela clínica", label: "Cuidado em detalhe" },
-  { src: "/manus-storage/AHRPTWnO4e_tFqgzVxZICgH1t6-XI0EYFCa9KlpBvu_h45m4PDcW-g8frWXH-I8viYfscfDimEQJLJxAbG42ruiSvI06hZQOYxaQEETKEAT4HykXAnm6bf2ZO1P18EPcpXFSREU1Ultqw1818-h1818-k-no-Copia(2)_d8bd95e5.jpg", alt: "Sorriso registrado em acompanhamento odontológico", label: "Naturalidade" },
-  { src: "/manus-storage/AHRPTWmS1wck727IB2E0YkePFwIqd9vuj37es6ZakWzip5CZ0_OJzVyQNPc65fnpwaPsLFjxApG4UviBySbChE1OaB3DzKPr7pJnp2dje23W3MUdqHgNTzNCiks0YXUQwLJJC2MrrWzRUQw1818-h1818-k-no-Copia(2)_81930604.png", alt: "Equipe e paciente em ambiente clínico", label: "Relações que cuidam" },
+  { src: "/images/gallery-detail.png", alt: "Registro clínico odontológico fornecido pela clínica", label: "Cuidado em detalhe" },
+  { src: "/images/gallery-smile.jpg", alt: "Sorriso registrado em acompanhamento odontológico", label: "Naturalidade" },
+  { src: "/images/gallery-team.png", alt: "Equipe e paciente em ambiente clínico", label: "Relações que cuidam" },
 ];
 
 const navItems = [
@@ -59,26 +60,31 @@ function ChatWidget() {
       content: "Olá! Eu sou a Clara, assistente virtual da clínica. Posso explicar nossos tratamentos e ajudar você a encontrar o próximo passo. Como posso ajudar?",
     },
   ]);
-  const chatMutation = trpc.ai.chat.useMutation();
+  const [isSending, setIsSending] = useState(false);
 
-  const handleSendMessage = (content: string) => {
+  const handleSendMessage = async (content: string) => {
     const nextMessages: ChatMessage[] = [...messages, { role: "user", content }];
     setMessages(nextMessages);
-    chatMutation.mutate(
-      { messages: nextMessages.map(({ role, content: messageContent }) => ({ role, content: messageContent })) },
-      {
-        onSuccess: (response) => {
-          setMessages((current) => [...current, { role: "assistant", content: response.content }]);
-        },
-        onError: () => {
-          setMessages((current) => [
-            ...current,
-            { role: "assistant", content: "Desculpe, tive uma instabilidade agora. Você pode tentar novamente ou falar diretamente com a equipe pelo formulário de contato." },
-          ]);
-          toast.error("Não foi possível responder agora", { description: "Tente novamente em instantes." });
-        },
-      },
-    );
+    setIsSending(true);
+
+    try {
+      const response = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ messages: nextMessages }),
+      });
+      const payload = (await response.json()) as { content?: string; error?: string };
+      if (!response.ok || !payload.content) throw new Error(payload.error || "Assistant unavailable");
+      setMessages((current) => [...current, { role: "assistant", content: payload.content! }]);
+    } catch {
+      setMessages((current) => [
+        ...current,
+        { role: "assistant", content: "Desculpe, tive uma instabilidade agora. Você pode tentar novamente ou falar diretamente com a equipe pelo formulário de contato." },
+      ]);
+      toast.error("Não foi possível responder agora", { description: "Tente novamente em instantes." });
+    } finally {
+      setIsSending(false);
+    }
   };
 
   return (
@@ -95,7 +101,7 @@ function ChatWidget() {
           <AIChatBox
             messages={messages}
             onSendMessage={handleSendMessage}
-            isLoading={chatMutation.isPending}
+            isLoading={isSending}
             placeholder="Digite sua dúvida..."
             height="420px"
             className="clinic-ai-chat"
@@ -117,7 +123,7 @@ export default function Home() {
   const [submitted, setSubmitted] = useState(false);
   const { scrollYProgress } = useScroll();
   const reduceMotion = useReducedMotion();
-  const { data: mapData, isError: mapError } = trpc.maps.staticMap.useQuery(undefined, { staleTime: 15 * 60 * 1000, retry: 1 });
+  const { data: mapData } = trpc.maps.staticMap.useQuery(undefined, { staleTime: 15 * 60 * 1000, retry: 1 });
   const heroX = useTransform(scrollYProgress, [0, 0.5], [0, reduceMotion ? 0 : -110]);
   const heroY = useTransform(scrollYProgress, [0, 0.45], [0, reduceMotion ? 0 : 70]);
   const sideX = useTransform(scrollYProgress, [0, 0.7], [0, reduceMotion ? 0 : -42]);
@@ -231,7 +237,7 @@ export default function Home() {
             <a className="location-text-link" href={clinicMapLink} target="_blank" rel="noreferrer">Ver local completo no Google Maps <ArrowUpRight size={15} /></a>
           </div>
           <div className="footer-map-wrap">
-            {mapData?.dataUrl ? <img className="footer-map" src={mapData.dataUrl} alt="Mapa oficial do Google Maps mostrando a localização da clínica Monique Cascapera no Tatuapé" /> : <div className="footer-map-placeholder"><MapPin size={22} /><strong>{mapError ? "Abra a localização no Google Maps" : "Carregando o mapa da clínica"}</strong><span>{clinicAddress}</span><a href={clinicMapLink} target="_blank" rel="noreferrer">Ver no Google Maps <ArrowUpRight size={15} /></a></div>}
+            <img className="footer-map" src={mapData?.dataUrl || mapImage} alt="Mapa do Google Maps mostrando a localização da clínica Monique Cascapera no Tatuapé" />
             <div className="map-label"><MapPin size={15} /> Dra. Monique Cascapera <span>Tatuapé · SP</span></div>
           </div>
         </div>

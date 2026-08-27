@@ -35,3 +35,11 @@
 - [x] Preparar instruções e configurações necessárias para conectar o repositório à Vercel.
 - [x] Definir explicitamente a estratégia Vercel como publicação estática da interface, mantendo chat e mapa server-side no hosting integrado.
 - [x] Adicionar configuração vercel.json com build e output validados para a interface estática.
+- [ ] Corrigir imagens que não aparecem no deploy da Vercel.
+- [ ] Validar os caminhos dos assets em produção e enviar a correção ao GitHub.
+- [ ] Diagnosticar o chat sem resposta no deploy da Vercel e conferir o nome das variáveis esperadas.
+- [ ] Corrigir a integração para que o frontend publicado alcance o backend do chat.
+- [ ] Validar uma resposta real do chat e registrar a configuração segura necessária.
+- [ ] Corrigir referências /manus-storage para assets públicos compatíveis com Vercel.
+- [ ] Criar rota serverless /api/trpc/ai.chat ou endpoint equivalente para o chat Groq.
+- [ ] Revalidar produção sem expor o valor de GROQ_API_KEY.

@@ -12,6 +12,8 @@ Para importar a interface na Vercel, abra `https://vercel.com/new`, selecione o 
 | Output Directory | `dist/public` |
 |
 
-Atenção: o projeto atual é full-stack e possui Express/tRPC para o assistente Groq e o Static Maps. A importação como site estático na Vercel renderiza a interface, mas as rotas server-side precisam ser convertidas para Vercel Functions antes de o chat e o mapa funcionarem nessa hospedagem externa. O hosting integrado do projeto já suporta essas rotas sem essa conversão.
+A rota serverless `/api/chat` foi adicionada para o assistente Groq. Na Vercel, cadastre `GROQ_API_KEY` em **Project Settings → Environment Variables** para Production, Preview e Development. O mapa usa fallback público em `/images/clinic-map-static.jpg`, enquanto o endpoint server-side Static Maps continua opcional.
+
+O restante do backend Express/tRPC do projeto não é publicado como um servidor Express tradicional na Vercel por esta configuração estática; o chat usa a função `/api/chat` dedicada. O hosting integrado do projeto continua sendo a opção recomendada para manter todas as rotas tRPC sem adaptação adicional.
 
 Nunca coloque `GROQ_API_KEY`, `BUILT_IN_FORGE_API_KEY`, `JWT_SECRET` ou qualquer outro segredo no GitHub. Se a versão Vercel for configurada, os valores devem ser cadastrados em **Project Settings → Environment Variables** e mantidos apenas no backend.
