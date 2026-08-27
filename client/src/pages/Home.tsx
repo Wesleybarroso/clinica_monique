@@ -8,16 +8,16 @@ import { trpc } from "@/lib/trpc";
 import { clinicAddress, clinicCoordinates, clinicMapLink, directionsLink, uberLink } from "@/lib/location";
 
 const heroImage = "/images/hero-clinic.jpg";
-const detailImage = "/images/detail-clinic.png";
+const detailImage = "/images/detail-clinic.jpg";
 const spaceImage = "/images/clinic-space.jpg";
-const textureImage = "/images/clinic-texture.png";
+const textureImage = "/images/clinic-texture.jpg";
 const markImage = "/images/monique-logo-hd.png";
-const assistantAvatar = "/images/assistant-avatar.png";
+const assistantAvatar = "/images/assistant-avatar.jpg";
 const mapImage = "/images/clinic-map-static.jpg";
 const galleryImages = [
   { src: "/images/gallery-detail.png", alt: "Registro clínico odontológico fornecido pela clínica", label: "Cuidado em detalhe" },
   { src: "/images/gallery-smile.jpg", alt: "Sorriso registrado em acompanhamento odontológico", label: "Naturalidade" },
-  { src: "/images/gallery-team.png", alt: "Equipe e paciente em ambiente clínico", label: "Relações que cuidam" },
+  { src: "/images/gallery-team.jpg", alt: "Equipe e paciente em ambiente clínico", label: "Relações que cuidam" },
 ];
 
 const navItems = [
