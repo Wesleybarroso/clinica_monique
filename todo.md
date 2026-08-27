@@ -18,3 +18,6 @@
 - [x] Criar teste Vitest específico para a procedure tRPC ai.chat, cobrindo input, output e erro.
 - [x] Validar o fluxo do widget com abertura, envio, carregamento e resposta renderizada.
 - [x] Simular falha do Groq e confirmar fallback do endpoint e da interface sem quebrar o chat.
+- [x] Recriar o logo Monique Cascapera em alta qualidade mantendo o monograma dourado e o círculo branco.
+- [x] Substituir o logo comprimido no cabeçalho, rodapé e favicon.
+- [x] Validar nitidez do novo logo em desktop e mobile.
