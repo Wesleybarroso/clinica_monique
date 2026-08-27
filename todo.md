@@ -30,3 +30,6 @@
 - [x] Diagnosticar a barrinha lateral e identificar qualquer overflow horizontal residual.
 - [x] Remover a barrinha e corrigir o layout para mobile e desktop.
 - [x] Validar que a página não cria rolagem horizontal indesejada.
+- [ ] Auditar o projeto para garantir que segredos não sejam versionados.
+- [ ] Criar o repositório privado clinica_monique no GitHub e enviar o projeto.
+- [ ] Preparar instruções e configurações necessárias para conectar o repositório à Vercel.
