@@ -15,3 +15,5 @@ O URL direto do lugar retorna `x-frame-options: SAMEORIGIN`, portanto não pode 
 Validação final: o mapa estático real do Google Maps aparece no cartão do rodapé em desktop e mobile, com recorte sem painel lateral. O endereço confirmado permanece ao lado e os botões de rota Google Maps e Uber ficam acessíveis em ambos os tamanhos.
 
 Correção oficial concluída: a procedure pública `maps.staticMap` retorna 200 e uma imagem PNG do Google Static Maps via backend, sem expor a chave. O mapa oficial aparece visualmente no rodapé em desktop e mobile; o screenshot manual deixou de ser usado pelo frontend. Os botões Google Maps e Uber continuam apontando para o endereço e coordenadas confirmados.
+
+Validação da correção da barra lateral: screenshots full-page em 390px e 1280px mostram a página sem a barrinha visual nas bordas, mantendo a composição, o mapa e o botão da Clara. A rolagem continua disponível; apenas a barra gráfica do navegador foi ocultada.

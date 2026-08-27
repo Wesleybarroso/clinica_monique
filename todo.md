@@ -27,3 +27,6 @@
 - [x] Validar os links e a responsividade da seção de localização.
 - [x] Implementar o mapa oficial do Google Maps via Static Maps no backend, sem usar screenshot recortado.
 - [x] Revalidar a seção de localização oficial em desktop e mobile.
+- [x] Diagnosticar a barrinha lateral e identificar qualquer overflow horizontal residual.
+- [x] Remover a barrinha e corrigir o layout para mobile e desktop.
+- [x] Validar que a página não cria rolagem horizontal indesejada.
