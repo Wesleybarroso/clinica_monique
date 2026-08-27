@@ -1,14 +1,17 @@
 /* Coastal Precision: composição editorial assimétrica, camadas de profundidade e movimento sereno. */
 import { useEffect, useState } from "react";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
-import { ArrowUpRight, Check, Clock3, Facebook, Instagram, Linkedin, Menu, MapPin, Phone, Sparkles, X } from "lucide-react";
+import { ArrowUpRight, Check, Clock3, Facebook, Instagram, Linkedin, Menu, MapPin, MessageCircle, Phone, Sparkles, X } from "lucide-react";
 import { toast } from "sonner";
+import { AIChatBox } from "@/components/AIChatBox";
+import { trpc } from "@/lib/trpc";
 
 const heroImage = "/manus-storage/AHRPTWnU3u5EoX5o0bG1VWGwz0WLAucR1EKgwdle0FKS9Q0TRG2U52VQvVi8RIw09y_2i5gD9w6ZIy1nzM8uHSaUae5bdMidjro8W8Oyt_8-rZyZN8yQUDqdIgsPkVXJfv2b0U6EBUKZw1440-h1440-k-no_17f77245.jpg";
 const detailImage = "/manus-storage/AHRPTWlTFlEJIJMmfhM5ynbU0e2itdAFOw1_ItuSDCsZjkPWlHHX6mIOdvNEh1IXrrbpTghEPf8xuqtDeb4H24BKURGKw1DZZBPk9NVaI4cmbGsuEAKzP4uxcZb-WbhJsjxTlUf68KYT0Qw2048-h2048-k-no_c0fe82a7.png";
 const spaceImage = "/manus-storage/clinic-space_7a07c87e.jpg";
 const textureImage = "/manus-storage/clinic-texture_03c9bc52.png";
 const markImage = "/manus-storage/pasted_file_wT535y_image_50d1b896.png";
+const assistantAvatar = "/manus-storage/assistant-avatar_efc6cd96.png";
 const galleryImages = [
   { src: "/manus-storage/AHRPTWmBWuxJIydhLhJuxjlOjgXmWlReJTvUnwFSfn0gOngNZrPBH5MQ5lnpqdEI0JyJdUxV8QzAHPxhkLahV5bq6mvn_O1eY3Z2Czw9qgBZMcxVVM0o8nseyKHf0aeFqZoxtxIpUOCKw904-h904-k-no_1e4fd976.png", alt: "Registro clínico odontológico fornecido pela clínica", label: "Cuidado em detalhe" },
   { src: "/manus-storage/AHRPTWnO4e_tFqgzVxZICgH1t6-XI0EYFCa9KlpBvu_h45m4PDcW-g8frWXH-I8viYfscfDimEQJLJxAbG42ruiSvI06hZQOYxaQEETKEAT4HykXAnm6bf2ZO1P18EPcpXFSREU1Ultqw1818-h1818-k-no-Copia(2)_d8bd95e5.jpg", alt: "Sorriso registrado em acompanhamento odontológico", label: "Naturalidade" },
@@ -42,6 +45,68 @@ function AppMark({ compact = false }: { compact?: boolean }) {
     <a className={`brand ${compact ? "brand--compact" : ""}`} href="#top" aria-label="Monique Cascapera, início">
       <img src={markImage} alt="Monique Cascapera — Odontologia Estética" />
     </a>
+  );
+}
+
+type ChatMessage = { role: "user" | "assistant"; content: string };
+
+function ChatWidget() {
+  const [open, setOpen] = useState(false);
+  const [messages, setMessages] = useState<ChatMessage[]>([
+    {
+      role: "assistant",
+      content: "Olá! Eu sou a Clara, assistente virtual da clínica. Posso explicar nossos tratamentos e ajudar você a encontrar o próximo passo. Como posso ajudar?",
+    },
+  ]);
+  const chatMutation = trpc.ai.chat.useMutation();
+
+  const handleSendMessage = (content: string) => {
+    const nextMessages: ChatMessage[] = [...messages, { role: "user", content }];
+    setMessages(nextMessages);
+    chatMutation.mutate(
+      { messages: nextMessages.map(({ role, content: messageContent }) => ({ role, content: messageContent })) },
+      {
+        onSuccess: (response) => {
+          setMessages((current) => [...current, { role: "assistant", content: response.content }]);
+        },
+        onError: () => {
+          setMessages((current) => [
+            ...current,
+            { role: "assistant", content: "Desculpe, tive uma instabilidade agora. Você pode tentar novamente ou falar diretamente com a equipe pelo formulário de contato." },
+          ]);
+          toast.error("Não foi possível responder agora", { description: "Tente novamente em instantes." });
+        },
+      },
+    );
+  };
+
+  return (
+    <>
+      {open && (
+        <section className="chat-popover" role="dialog" aria-label="Assistente virtual Clara">
+          <header className="chat-header">
+            <div className="chat-profile">
+              <img src={assistantAvatar} alt="Clara, assistente virtual" />
+              <div><strong>Clara</strong><span><i /> Assistente virtual</span></div>
+            </div>
+            <button className="chat-close" type="button" onClick={() => setOpen(false)} aria-label="Fechar assistente"><X size={18} /></button>
+          </header>
+          <AIChatBox
+            messages={messages}
+            onSendMessage={handleSendMessage}
+            isLoading={chatMutation.isPending}
+            placeholder="Digite sua dúvida..."
+            height="420px"
+            className="clinic-ai-chat"
+            emptyStateMessage="Estou aqui para ajudar você."
+            suggestedPrompts={["Quais tratamentos vocês fazem?", "Quero agendar uma avaliação", "Onde fica a clínica?"]}
+          />
+        </section>
+      )}
+      <button className={`chat-launcher ${open ? "is-open" : ""}`} type="button" onClick={() => setOpen((current) => !current)} aria-expanded={open} aria-label={open ? "Fechar assistente virtual" : "Abrir assistente virtual"}>
+        {open ? <X size={22} /> : <><span className="chat-launcher-avatar"><img src={assistantAvatar} alt="" aria-hidden="true" /></span><span className="chat-launcher-label">Fale com a Clara</span><MessageCircle size={18} /></>}
+      </button>
+    </>
   );
 }
 
@@ -149,6 +214,7 @@ export default function Home() {
         </section>
       </main>
 
+      <ChatWidget />
       <footer className="site-footer"><div className="container footer-inner"><AppMark /><p>Odontologia humanizada,<br />precisa e próxima.</p><div className="footer-social"><span>Siga a clínica</span><div><a href="https://www.instagram.com/dramoniquecascapera" target="_blank" rel="noreferrer" aria-label="Instagram da Dra. Monique Cascapera"><Instagram size={17} /></a><a href="https://www.facebook.com/dramoniquecascapera" target="_blank" rel="noreferrer" aria-label="Facebook da Dra. Monique Cascapera"><Facebook size={17} /></a><a href="https://www.linkedin.com/in/dramoniquecascapera" target="_blank" rel="noreferrer" aria-label="LinkedIn da Dra. Monique Cascapera"><Linkedin size={17} /></a></div></div><div className="footer-meta"><span>© 2026 Dra. Monique Cascapera</span><a href="#top">Voltar ao topo ↑</a></div></div></footer>
     </div>
   );
