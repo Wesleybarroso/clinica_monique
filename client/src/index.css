@@ -104,3 +104,18 @@ h1 em, h2 em { color: #92c7be; font-style: italic; }
 
 .footer-map-placeholder { display: flex; min-height: 380px; align-items: center; justify-content: center; flex-direction: column; gap: 10px; padding: 2rem; background: radial-gradient(circle at 40% 30%, rgba(215,182,90,.22), transparent 38%), #282824; color: #fffdf8; text-align: center; }.footer-map-placeholder > svg { color: #d7b65a; }.footer-map-placeholder strong { font-family: 'Cormorant Garamond', serif; font-size: 25px; font-weight: 500; }.footer-map-placeholder span { max-width: 280px; color: rgba(255,253,248,.62); font-size: 11px; line-height: 1.55; }.footer-map-placeholder a { display: inline-flex; align-items: center; gap: 6px; margin-top: 8px; color: #d7b65a; font-size: 10px; letter-spacing: .08em; text-decoration: none; text-transform: uppercase; }.footer-map-placeholder a:hover, .footer-map-placeholder a:focus-visible { color: #fffdf8; }
 @media (max-width: 760px) { .footer-map-placeholder { min-height: 310px; } }
+
+/* Leaflet / OpenStreetMap */
+.footer-map .leaflet-container { height: 100%; min-height: inherit; background: #d9e2dc; font-family: 'DM Sans', sans-serif; }
+.footer-map .leaflet-tile-pane { filter: saturate(.82) sepia(.04); }
+.footer-map .leaflet-control-zoom { overflow: hidden; border: 1px solid rgba(26,26,24,.2) !important; border-radius: 0 !important; box-shadow: 0 8px 18px rgba(26,26,24,.16) !important; }
+.footer-map .leaflet-control-zoom a { width: 32px; height: 32px; border: 0; background: rgba(255,253,248,.94); color: #1a1a18; line-height: 32px; }
+.footer-map .leaflet-control-zoom a:hover, .footer-map .leaflet-control-zoom a:focus-visible { background: #d7b65a; color: #1a1a18; }
+.footer-map .leaflet-control-attribution { padding: 3px 6px; background: rgba(255,253,248,.84); color: #4f5148; font-size: 9px; }
+.footer-map .leaflet-control-attribution a { color: #6d5620; }
+.footer-map .leaflet-popup-content-wrapper, .footer-map .leaflet-popup-tip { border-radius: 0; background: #1a1a18; color: #fffdf8; }
+.footer-map .leaflet-popup-content { margin: 12px 14px; font-size: 11px; line-height: 1.5; }
+.footer-map .leaflet-popup-close-button { color: #d7b65a !important; }
+.clinic-leaflet-marker { border: 0; background: transparent; }
+.clinic-leaflet-marker__dot { position: relative; display: block; width: 30px; height: 30px; border: 3px solid #fffdf8; border-radius: 50% 50% 50% 0; background: #c8a34a; box-shadow: 0 5px 13px rgba(26,26,24,.35); transform: rotate(-45deg); }
+.clinic-leaflet-marker__dot::after { content: ''; position: absolute; top: 7px; left: 7px; width: 10px; height: 10px; border-radius: 50%; background: #1a1a18; }

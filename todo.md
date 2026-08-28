@@ -60,10 +60,21 @@
 - [x] Auditar TSX, CSS e HTML por setas Unicode remanescentes.
 - [x] Auditar client/index.html e demais arquivos frontend fora de client/src por setas Unicode restantes.
 
-- [ ] Diagnosticar o erro exibido pela Clara ao enviar uma pergunta no site público.
-- [ ] Corrigir o endpoint ou o widget para que perguntas válidas retornem uma resposta sem erro.
+- [x] Diagnosticar o erro exibido pela Clara ao enviar uma pergunta no site público.
+- [x] Corrigir o endpoint ou o widget para que perguntas válidas retornem uma resposta sem erro.
 - [ ] Testar o fluxo corrigido no endpoint local e no domínio público.
 
-- [ ] Reproduzir novamente a falha da assistente Clara no domínio público após a tentativa de redeploy.
+- [x] Reproduzir novamente a falha da assistente Clara no domínio público após a tentativa de redeploy.
 - [ ] Confirmar se o domínio público está executando o commit corrigido e se `GROQ_API_KEY` está disponível na função serverless.
 - [ ] Validar uma pergunta real da Clara no domínio público após a correção ou redeploy.
+
+- [x] Substituir o MapView atual do rodapé por Leaflet com tiles do OpenStreetMap.
+- [x] Manter marcador, endereço, links Google Maps/Uber e fallback visual na nova implementação.
+- [x] Validar pan, zoom, responsividade e build do mapa Leaflet em desktop e mobile.
+
+- [x] Testar o mapa Leaflet em mobile e registrar pan/zoom funcionando sem quebrar o layout.
+- [x] Concluir uma build de produção bem-sucedida após a troca para Leaflet.
+
+- [ ] Confirmar mudança real de zoom do Leaflet em mobile e desktop antes/depois da interação.
+- [ ] Confirmar arrasto/pan do Leaflet em mobile e desktop e registrar o centro alterado sem quebrar o layout.
+- [ ] Registrar evidência objetiva das interações do mapa antes do checkpoint final.

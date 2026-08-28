@@ -241,15 +241,6 @@ export default function Home() {
               className="footer-map footer-map--interactive"
               initialCenter={clinicCoordinates}
               initialZoom={16}
-              onMapReady={(map) => {
-                if (window.google?.maps?.marker?.AdvancedMarkerElement) {
-                  new window.google.maps.marker.AdvancedMarkerElement({
-                    map,
-                    position: clinicCoordinates,
-                    title: "Dra. Monique Cascapera — Tatuapé",
-                  });
-                }
-              }}
             />
             <div className="map-label"><MapPin size={15} /> Dra. Monique Cascapera <span>Tatuapé · SP</span></div>
           </div>
