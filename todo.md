@@ -59,3 +59,11 @@
 - [x] Revalidar em desktop após a substituição final da seta do rodapé.
 - [x] Auditar TSX, CSS e HTML por setas Unicode remanescentes.
 - [x] Auditar client/index.html e demais arquivos frontend fora de client/src por setas Unicode restantes.
+
+- [ ] Diagnosticar o erro exibido pela Clara ao enviar uma pergunta no site público.
+- [ ] Corrigir o endpoint ou o widget para que perguntas válidas retornem uma resposta sem erro.
+- [ ] Testar o fluxo corrigido no endpoint local e no domínio público.
+
+- [ ] Reproduzir novamente a falha da assistente Clara no domínio público após a tentativa de redeploy.
+- [ ] Confirmar se o domínio público está executando o commit corrigido e se `GROQ_API_KEY` está disponível na função serverless.
+- [ ] Validar uma pergunta real da Clara no domínio público após a correção ou redeploy.
